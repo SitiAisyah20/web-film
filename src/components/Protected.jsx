@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMe } from "../redux/actions/authActions";
+import { toast } from "react-toastify";
 
 function Protected({ children }) {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ function Protected({ children }) {
 
   useEffect(() => {
     if (!token) {
-      return navigate("/");
+      toast.warn(`Please Login Now!`)
+      return navigate("/login");
     }
 
     // get user information
